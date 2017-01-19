@@ -1,0 +1,19 @@
+{% for post in posts %}
+    <div class="blog-post">
+        <h2 class="blog-post-title">{{ post.name }}</h2>
+        <p class="blog-post-meta">
+            <span class="date">{% if post.created %}{{ post.created|date('d.m.Y') }}{% endif %}</span>
+            <span class="tags_list">
+                {% if post.tags %}
+                    {% for tags in post.tags %}
+                        <a class="btn btn-xs btn-default" href="{{ path('blog_post_by_tag', { 'id': tags.id }) }}">{{ tags.name }}</a>
+                    {% endfor %}
+                {% endif %}
+            </span>
+        </p>
+        <div class="text">
+            {% if post.description %}{{ post.description | raw }}{% endif %}
+        </div>
+        <a class="btn btn-default" href="{{ path('blog_show_post', { 'id': post.id }) }}" role="button">Читать »</a>
+    </div>
+{% endfor %}

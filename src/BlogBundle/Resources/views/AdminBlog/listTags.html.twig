@@ -1,0 +1,39 @@
+{% extends 'admin.html.twig' %}
+
+{% block heading %}Список тегов{% endblock %}
+
+{% block body %}
+    <ul>
+        <li>
+            <a href="{{ path('admin_blog_tag_new') }}">Добавить тег</a>
+        </li>
+    </ul>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            {#<th>Description</th>#}
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tag in tags %}
+            <tr>
+                <td>{{ tag.id }}</td>
+                <td>{{ tag.name }}</td>
+                {#<td>{% if category.description %}{{ category.description }}{% endif %}</td>#}
+                <td>
+                    <a href="{{ path('admin_blog_tag_edit', { 'id': tag.id }) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ path('admin_blog_tag_delete', { 'id': tag.id }) }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(tags) }}
+    </div>
+
+{% endblock %}

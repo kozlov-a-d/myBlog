@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block heading %}
+    {% if heading is defined %}
+        {{ heading }}
+    {% else %}
+        Блог
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="publication blog">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                {# список постов #}
+                {% if posts is defined %}
+                    {{ render(controller('BlogBundle:Blog:listPosts', { 'posts': posts })) }}
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(posts) }}
+                    </div>
+                {% endif %}
+
+                {# одиночный пост #}
+                {% if post is defined %}
+                    {{ include('BlogBundle:Blog:show.html.twig', { 'id': post }) }}
+                {% endif %}
+            </div>
+
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                <div class="sidebar-module">
+                    <h4>Категории</h4>
+                    {% if categoryCurrId is defined %}
+                        {{ render(controller('BlogBundle:Blog:listCategory', { 'currId': categoryCurrId })) }}
+                    {% else %}
+                        {{ render(controller('BlogBundle:Blog:listCategory')) }}
+                    {% endif %}
+                </div>
+                <div class="sidebar-module">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Теги</h4>
+                        </div>
+                        {% if tagsCurrId is defined %}
+                            {{ render(controller('BlogBundle:Blog:listTags', { 'currId': tagsCurrId })) }}
+                        {% else %}
+                            {{ render(controller('BlogBundle:Blog:listTags'))}}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

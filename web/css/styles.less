@@ -1,0 +1,113 @@
+.animation(){
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+}
+.animation_off(){
+  transition: none;
+  -webkit-transition: none;
+}
+.placeholder(@color: #f00){
+  input[type="text"]::-webkit-input-placeholder {color: @color; opacity: 1; font-weight: 400;}
+  input[type="text"]::-moz-placeholder          {color: @color; opacity: 1; font-weight: 400;}
+  input[type="text"]:-ms-input-placeholder      {color: @color; opacity: 1; font-weight: 400;}
+
+  input[type="email"]::-webkit-input-placeholder {color: @color; opacity: 1; font-weight: 400;}
+  input[type="email"]::-moz-placeholder          {color: @color; opacity: 1; font-weight: 400;}
+  input[type="email"]:-ms-input-placeholder      {color: @color; opacity: 1; font-weight: 400;}
+
+  input[type="password"]::-webkit-input-placeholder {color: @color; opacity: 1; font-weight: 400;}
+  input[type="password"]::-moz-placeholder          {color: @color; opacity: 1; font-weight: 400;}
+  input[type="password"]:-ms-input-placeholder      {color: @color; opacity: 1; font-weight: 400;}
+
+  textarea::-webkit-input-placeholder {color: @color; opacity: 1; font-weight: 400;}
+  textarea::-moz-placeholder          {color: @color; opacity: 1; font-weight: 400;}
+  textarea:-ms-input-placeholder      {color: @color; opacity: 1; font-weight: 400;}
+}
+.gradient_left(@startColor: #000, @endColor: #fff){
+  background: @startColor; /* Old browsers */
+  background: -moz-linear-gradient(left, @startColor 0%, @endColor 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, @startColor 0%,@endColor 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, @startColor 0%,@endColor 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@startColor', endColorstr='@endColor',GradientType=1 ); /* IE6-9 */
+}
+
+/**********************************/
+/*             COMMON             */
+/**********************************/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by header height */
+  margin-top: 50px;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+/**********************************/
+/*             HEADER             */
+/**********************************/
+
+
+/**********************************/
+/*             FOOTER             */
+/**********************************/
+#footer {
+  &>.container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .text-muted {
+    margin: 20px 0;
+  }
+}
+
+
+/**********************************/
+/*              BLOG              */
+/**********************************/
+.blog-main{
+  .blog-post{
+    padding-bottom: 25px;
+    border-bottom: 1px solid #ccc;
+    &:last-child{
+      border-bottom: none;
+    }
+    .date{
+      display: inline-block;
+      margin-right: 15px;
+      font-style: italic;
+    }
+    .text{
+      padding: 1px 0;
+    }
+  }
+}
+
+/**********************************/
+/*             HEADER             */
+/**********************************/
+
+
+/**********************************/
+/*             HEADER             */
+/**********************************/
+
+
+/**********************************/
+/*             HEADER             */
+/**********************************/
+
+
+/**********************************/
+/*             HEADER             */
+/**********************************/

@@ -1,0 +1,41 @@
+{% extends 'admin.html.twig' %}
+
+{% block heading %}Список постов{% endblock %}
+
+{% block body %}
+    <ul>
+        <li>
+            <a href="{{ path('admin_blog_posts_new') }}">Добавить пост</a>
+        </li>
+    </ul>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Created</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.name }}</td>
+                <td>{% if post.category %}{{ post.category }}{% endif %}</td>
+                <td>{% if post.created %}{{ post.created|date('H:i d.m.Y') }}{% endif %}</td>
+                <td><div class="text-overflow">{% if post.description %}{{ post.description | raw }}{% endif %}</div></td>
+                <td>
+                    <a href="{{ path('admin_blog_posts_edit', { 'id': post.id }) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ path('admin_blog_posts_delete', { 'id': post.id }) }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
+
+{% endblock %}

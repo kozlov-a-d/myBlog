@@ -1,0 +1,5 @@
+<div class="panel-body">
+    {% for tag in tags %}
+        <a class="btn btn-xs btn-default{% if currId == tag.id %} btn-primary{% endif %}" href="{{ path('blog_post_by_tag', { 'id': tag.id }) }}">{{ tag.name }}</a>
+    {% endfor %}
+</div>

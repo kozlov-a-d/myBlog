@@ -54,7 +54,7 @@ class BlogController extends Controller
      * @Route("/post/{id}", name="blog_show_post")
      * @Method("GET")
      */
-    public function showAction($id)
+    public function showPostAction($id)
     {
 
         $em = $this->getDoctrine()->getManager();

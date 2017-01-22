@@ -60,7 +60,15 @@
                     {#</li>#}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">Вход</a></li>
+                    {#<li><a href="">Вход</a></li>#}
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">Выход</a></li>
+                {% else %}
+                    <li><a href="{{ path('fos_user_registration_register') }}">Регистрация</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}">Вход</a></li>
+                {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -71,7 +79,20 @@
 
         <h1>{% block heading %}Heading{% endblock %}</h1>
 
-        {% block body %}{% endblock %}
+        <div class="content">
+        {% block body %}
+            <p>
+                Вход в админку <a href="{{ path('admin_index') }}">/admin/</a><br/>
+                User: <b>admin</b><br/>
+                Pass: <b>123</b><br/>
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam diam vel justo pretium, vitae dignissim lacus bibendum. Nulla eros sapien, gravida varius tellus ac, finibus maximus diam. Pellentesque a rhoncus lacus. Phasellus scelerisque augue vitae neque hendrerit, rutrum aliquet nunc vulputate. In porttitor dapibus augue. Suspendisse consequat ullamcorper diam, nec rutrum ipsum. Sed venenatis in ex sed dapibus. Nam vel iaculis lorem. Proin vitae metus ac tellus porta blandit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin eget felis est. Pellentesque magna nisi, maximus id egestas a, fermentum eget diam. Nullam elementum velit magna, eu fringilla purus vehicula id. Sed posuere finibus arcu, quis egestas lacus. Cras eros mi, varius et nunc eu, dictum consequat elit.</p>
+            <p>Aliquam erat volutpat. Cras vel cursus neque. Nullam sit amet vestibulum lectus, id gravida eros. Etiam volutpat sagittis vehicula. Nam tincidunt, diam id condimentum pellentesque, lectus orci fermentum urna, ut venenatis tellus tortor at justo. Proin consectetur at enim et molestie. Donec rhoncus sodales rhoncus. Nullam lacinia quis mauris eu suscipit. Cras et arcu vel odio luctus pellentesque in sed nulla. Maecenas pretium libero arcu, at convallis nisi dapibus at. Vivamus ultrices nisi id rhoncus pellentesque.</p>
+            <p>Vestibulum turpis neque, faucibus non velit ut, aliquam vehicula sem. Maecenas quam neque, vehicula vitae lectus vel, pretium hendrerit nibh. Cras dignissim ipsum ac massa iaculis, in tincidunt odio volutpat. Etiam a risus ut magna maximus tincidunt. Quisque quis dui non turpis dapibus mattis. Duis eu enim at diam elementum consectetur. Nullam velit libero, vehicula vel erat eget, accumsan porttitor mauris. Curabitur posuere ultrices nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In sit amet sollicitudin sapien. Mauris eu iaculis ex, id volutpat mauris. Proin id porta libero. Nam eu ultrices urna. Donec pellentesque tincidunt nunc ut convallis. Vestibulum vehicula feugiat commodo.</p>
+            <p>Nulla facilisi. Sed et lacus in dui laoreet egestas. Nullam blandit dui velit, nec iaculis sem sollicitudin a. Sed lacinia consectetur lacus et cursus. Aenean maximus elit sit amet dictum suscipit. Ut rutrum metus nec eros finibus facilisis. Suspendisse varius nisl turpis, et consectetur risus posuere vel.</p>
+            <p>Nullam faucibus sem felis, cursus vulputate mauris euismod a. Etiam a orci bibendum, ultricies ante eget, feugiat justo. Quisque et consequat lectus. Praesent ipsum lorem, varius eu maximus eu, interdum luctus tortor. Curabitur et pharetra mi, a aliquam mauris. Praesent blandit est molestie nunc lobortis, a malesuada purus ultricies. Sed sit amet vehicula tortor, id venenatis ligula. Pellentesque mattis blandit nisl ac malesuada. Curabitur sed eleifend ex. Integer pellentesque nibh ex, interdum rutrum arcu posuere vitae.</p>
+        {% endblock %}
+        </div>
 
     </div> <!-- /container -->
 

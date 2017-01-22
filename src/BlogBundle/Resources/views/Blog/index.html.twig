@@ -35,7 +35,8 @@
                     {% if categoryCurrId is defined %}
                         {{ render(controller('BlogBundle:Blog:listCategory', { 'currId': categoryCurrId })) }}
                     {% else %}
-                        {{ render(controller('BlogBundle:Blog:listCategory')) }}
+                        {# почему то перестал работать defaults={"currId": "0"}, пришлось ставить 0 тут #}
+                        {{ render(controller('BlogBundle:Blog:listCategory', { 'currId': 0 })) }}
                     {% endif %}
                 </div>
                 <div class="sidebar-module">
@@ -46,7 +47,8 @@
                         {% if tagsCurrId is defined %}
                             {{ render(controller('BlogBundle:Blog:listTags', { 'currId': tagsCurrId })) }}
                         {% else %}
-                            {{ render(controller('BlogBundle:Blog:listTags'))}}
+                            {# почему то перестал работать defaults={"currId": "0"}, пришлось ставить 0 тут #}
+                            {{ render(controller('BlogBundle:Blog:listTags', { 'currId': 0 }))}}
                         {% endif %}
                     </div>
                 </div>

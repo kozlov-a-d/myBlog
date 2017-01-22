@@ -1,0 +1,34 @@
+<div class="blog-post">
+    <br/>
+    <p class="blog-post-meta">
+        <span class="date">
+            <span class="glyphicon glyphicon-calendar"></span>
+            {% if post.created %}{{ post.created|date('d.m.Y') }}{% endif %}
+        </span>
+        <span class="tags_list">
+            <span class="glyphicon glyphicon-tags" style="margin-right: 6px;"></span>
+            {% if post.tags %}
+                {% for tags in post.tags %}
+                    <a class="btn btn-xs btn-default" href="{{ path('blog_post_by_tag', { 'id': tags.id }) }}">{{ tags.name }}</a>
+                {% endfor %}
+            {% endif %}
+        </span>
+    </p>
+    <p class="blog-post-image">
+        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+    </p>
+    <div class="text">
+        {% if post.content %}{{ post.content | raw }}{% endif %}
+    </div>
+
+    <!-- Comments Form -->
+    <div id="js-blog_add_comments_container">
+    {{ render(controller('BlogBundle:Comments:AddCommentByPost', { 'id': post.id })) }}
+    </div>
+
+    <!-- Comments List -->
+    <div id="js-blog_list_comments_container">
+        {{ render(controller('BlogBundle:Comments:showCommentsByPost', { 'id': post.id })) }}
+    </div>
+
+</div>

@@ -13,7 +13,7 @@
 
     <div class="publication blog">
         <div class="row">
-            <div class="col-sm-8 blog-main">
+            <div class="col-sm-9 blog-main">
                 {# список постов #}
                 {% if posts is defined %}
                     {{ render(controller('BlogBundle:Blog:listPosts', { 'posts': posts })) }}
@@ -25,11 +25,11 @@
 
                 {# одиночный пост #}
                 {% if post is defined %}
-                    {{ include('BlogBundle:Blog:show.html.twig', { 'id': post }) }}
+                    {{ include('BlogBundle:Blog:showPost.html.twig', { 'id': post }) }}
                 {% endif %}
             </div>
 
-            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="col-sm-3 blog-sidebar">
                 <div class="sidebar-module">
                     <h4>Категории</h4>
                     {% if categoryCurrId is defined %}

@@ -69,12 +69,19 @@ class Posts
      */
     private $content;
 
+//    /**
+//     * One Post has Many Comments.
+//     * @ORM\OneToMany(targetEntity="Comments", mappedBy="posts")
+//     */
+//    private $comments;
+
     public function __construct()
     {
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
         $this->category = new ArrayCollection();
         $this->tags = new ArrayCollection();
+//        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -282,5 +289,39 @@ class Posts
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \BlogBundle\Entity\Comments $comment
+     *
+     * @return Posts
+     */
+    public function addComment(\BlogBundle\Entity\Comments $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \BlogBundle\Entity\Comments $comment
+     */
+    public function removeComment(\BlogBundle\Entity\Comments $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

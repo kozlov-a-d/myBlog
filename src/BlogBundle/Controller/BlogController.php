@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 /**
- * Post controller.
+ * Blog controller.
  *
  * @Route("blog")
  */
@@ -32,7 +32,7 @@ class BlogController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('BlogBundle:Posts')->findAll();
+        $posts = $em->getRepository('BlogBundle:Posts')->findBy(array(), array('created' => 'DESC'));
 
         /**
          * @var $paginator \Knp\Component\Pager\Paginator
@@ -52,7 +52,7 @@ class BlogController extends Controller
 
     /**
      * @Route("/post/{id}", name="blog_show_post")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function showPostAction($id)
     {
@@ -76,7 +76,7 @@ class BlogController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository('BlogBundle:Posts')->findBy(array('category' => $id));
+        $posts = $em->getRepository('BlogBundle:Posts')->findBy(array('category' => $id), array('created' => 'DESC'));
 
         $category = $em->getRepository('BlogBundle:Category')->find($id);
 
@@ -111,6 +111,7 @@ class BlogController extends Controller
             ->innerJoin('u.tags', 'g')
             ->where('g.id = :tags_id')
             ->setParameter('tags_id', $id)
+            ->orderBy('u.id', 'DESC')
             ->getQuery()->getResult();
 
         $posts = $query;
@@ -141,6 +142,7 @@ class BlogController extends Controller
      */
     public function listPostsAction($posts)
     {
+//        нафига он мне?
         return $this->render('BlogBundle:Blog:list.html.twig', array(
             'posts' => $posts,
         ));
